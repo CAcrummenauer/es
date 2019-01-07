@@ -1,12 +1,9 @@
 var listElement = document.querySelector('#app ul');
 var inputElement = document.querySelector('#app input');
 var buttonElement = document.querySelector('#app button');
+inputElement.on
 
-var tarefas = [
-    'Estudar JavaScript',
-    'Estudar React',
-    'Estudar React Native'
-];
+var tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
 function adicionarTarefas() {
     listElement.innerHTML = '';
@@ -34,6 +31,7 @@ function adicionarTarefa() {
     tarefas.push(liTextElement);
     inputElement.value = '';
     adicionarTarefas();
+    saveToStorage();
 }
 
 buttonElement.onclick = adicionarTarefa;
@@ -41,4 +39,9 @@ buttonElement.onclick = adicionarTarefa;
 function removerTarefa(posicao) {
     tarefas.splice(posicao, 1);
     adicionarTarefas();
+    saveToStorage();
+}
+
+function saveToStorage() {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
