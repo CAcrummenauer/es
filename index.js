@@ -9,6 +9,7 @@ var tarefas = [
 ];
 
 function adicionarTarefas() {
+    listElement.innerHTML = '';
     for (tarefa of tarefas) {
         var liElement = document.createElement('li');
         var liTextElement = document.createTextNode(tarefa);
@@ -16,5 +17,13 @@ function adicionarTarefas() {
         listElement.appendChild(liElement);
     }
 }
-
 adicionarTarefas();
+
+function adicionarTarefa() {
+    var liTextElement = inputElement.value;
+    tarefas.push(liTextElement);
+    inputElement.value = '';
+    adicionarTarefas();
+}
+
+buttonElement.onclick = adicionarTarefa;
